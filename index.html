@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Para Ti – Mi Pequeño Sitio de Amor</title>
+  <meta name="description" content="Una página web romántica y suave, hecha con HTML y CSS, lista para dedicar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#ff9a9e; /* rosado */
+      --bg2:#fad0c4; /* crema rosado */
+      --bg3:#fbc2eb; /* rosa suave */
+      --ink:#2a2a2a;
+      --ink-soft:#4a4a4a;
+      --white:#ffffff;
+      --accent:#ff5d8f;
+      --accent-2:#9b5de5;
+      --card:#ffffffd9;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background: linear-gradient(135deg,var(--bg1),var(--bg3) 50%, var(--bg2));
+      background-attachment: fixed;
+    }
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    header.hero{
+      position:relative; isolation:isolate; min-height:84svh; display:grid; place-items:center; text-align:center; color:#2a1a1a;
+    }
+    .glass{
+      background:var(--card); backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.6); box-shadow:var(--shadow);
+      border-radius:var(--radius);
+    }
+    .hero .inner{ padding:48px 26px }
+    h1.brand{
+      font-family:"Great Vibes", cursive; font-size: clamp(42px, 7vw, 84px); line-height:1.05; margin: 0 0 10px; color:#d6336c; letter-spacing:.5px;
+      text-shadow: 0 2px 0 rgba(255,255,255,.6);
+    }
+    p.tagline{font-size:clamp(16px, 2.2vw, 22px); margin:8px auto 18px; color:var(--ink-soft)}
+    .cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+    .btn{
+      --_bg: var(--accent);
+      appearance:none; border:none; cursor:pointer; padding:14px 22px; font-weight:600; border-radius:999px; background:var(--_bg); color:white; box-shadow:0 8px 22px rgba(255,93,143,.25);
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn.secondary{ --_bg: var(--white); color:#d6336c; border:1px solid #ffd6e5; box-shadow:0 8px 22px rgba(0,0,0,.06)}
+    .btn:hover{ transform: translateY(-1px) }
+
+    /* flotando corazones */
+    .hearts{ position:absolute; inset:0; overflow:hidden; z-index:-1 }
+    .heart{ position:absolute; width:18px; aspect-ratio:1; background: #ff4d86; transform: rotate(45deg); opacity:.18; filter: blur(.2px); animation: floatUp linear infinite; border-radius:2px }
+    .heart::before,.heart::after{ content:""; position:absolute; inset:-50% auto auto -50%; width:100%; height:100%; background:inherit; border-radius:50% }
+    .heart::after{ inset:auto -50% -50% auto }
+    @keyframes floatUp{ to{ transform: translateY(-120vh) rotate(45deg) } }
+    /* crear varias instancias */
+    .heart:nth-child(1){ left:8%; bottom:-10vh; animation-duration:18s }
+    .heart:nth-child(2){ left:20%; bottom:-14vh; animation-duration:22s; width:22px; opacity:.14 }
+    .heart:nth-child(3){ left:34%; bottom:-12vh; animation-duration:16s; width:14px }
+    .heart:nth-child(4){ left:50%; bottom:-15vh; animation-duration:20s; width:24px; opacity:.16 }
+    .heart:nth-child(5){ left:66%; bottom:-12vh; animation-duration:17s }
+    .heart:nth-child(6){ left:78%; bottom:-18vh; animation-duration:21s; width:20px; opacity:.14 }
+
+    section{ padding:64px 0 }
+    h2{ font-size: clamp(28px, 4vw, 44px); margin:0 0 18px; color:#7a1c3b }
+    .grid{ display:grid; gap:18px }
+    .cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)) }
+    @media (max-width: 860px){ .cols-3{ grid-template-columns: 1fr 1fr } }
+    @media (max-width: 640px){ .cols-3{ grid-template-columns: 1fr } }
+
+    .card{ padding:22px; border-radius:var(--radius); background:var(--card); border:1px solid rgba(255,255,255,.7); box-shadow:var(--shadow) }
+    .poem p{ margin:10px 0; line-height:1.8 }
+    .poem strong{ color:#c2255c }
+
+    .timeline{ position:relative; padding-left:22px }
+    .timeline::before{ content:""; position:absolute; left:10px; top:4px; bottom:4px; width:2px; background:linear-gradient(#ff76a6,#ffd1e3) }
+    .moment{ position:relative; margin:18px 0; padding:14px 16px 14px 22px; border-radius:14px; background:var(--white); border:1px solid #ffe3ee; box-shadow:var(--shadow) }
+    .moment::before{ content:""; position:absolute; left:-3px; top:16px; width:10px; height:10px; background:#ff6b9a; border:2px solid white; border-radius:50%; box-shadow:0 0 0 4px #ffe3ee }
+    .moment h3{ margin:0 0 4px; font-size:18px; color:#a61e4d }
+    .moment p{ margin:0; color:#444 }
+
+    .gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap:14px }
+    .tile{ grid-column: span 4; aspect-ratio: 4/3; border-radius:18px; background: linear-gradient(135deg, #ffd6e5, #ffe9f2); border:1px solid #fff; position:relative; overflow:hidden; box-shadow:var(--shadow) }
+    .tile:nth-child(2){ grid-column: span 8 }
+    .tile:nth-child(5){ grid-column: span 8 }
+    @media (max-width:920px){ .tile{ grid-column: span 6 } .tile:nth-child(2), .tile:nth-child(5){ grid-column: span 6 } }
+    @media (max-width:620px){ .tile{ grid-column: 1 / -1 } }
+    .tile svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.55 }
+
+    blockquote{ margin:0; padding:22px; border-left:4px solid #ff96b8; background:#fff9fb; border-radius:14px }
+    blockquote footer{ margin-top:6px; color:#a22b55; font-weight:600 }
+
+    footer.site{ text-align:center; padding:34px 0 60px; color:#5e2d3a }
+    .signature{ font-family:"Great Vibes", cursive; font-size:34px; color:#b11e52 }
+    .small{ font-size:13px; opacity:.8 }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hearts" aria-hidden="true">
+      <span class="heart"></span>
+      <span class="heart"></span>
+      <span class="heart"></span>
+      <span class="heart"></span>
+      <span class="heart"></span>
+      <span class="heart"></span>
+    </div>
+
+    <div class="container glass inner">
+      <h1 class="brand">Para ti, con todo mi amor</h1>
+      <p class="tagline">Cada latido escribe tu nombre. Cada día contigo es mi capítulo favorito.</p>
+      <div class="cta">
+        <a class="btn" href="#poema">Leer el poema</a>
+        <a class="btn secondary" href="#historia">Nuestra historia</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="poema">
+      <div class="container">
+        <h2>Un poema para ti</h2>
+        <div class="card poem">
+          <p><strong>Tú</strong>, que llegaste como amanecer suave,</p>
+          <p>dibujaste luz donde antes hubo tarde.</p>
+          <p>Si el mundo corre, que corra sin prisa,</p>
+          <p>yo me detengo en tu risa.</p>
+          <p>Si el tiempo duda, que dude a tu lado,</p>
+          <p>porque en tus ojos todo está encontrado.</p>
+          <p>Nos somos <strong>tú y yo</strong>, y en cada día nuevo,</p>
+          <p>yo elijo tu mano, tu abrazo y tu cielo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia">
+      <div class="container">
+        <h2>Nuestra historia</h2>
+        <div class="timeline">
+          <article class="moment">
+            <h3>Cuando te vi por primera vez</h3>
+            <p>El mundo hizo silencio para escuchar cómo empezaba nuestra canción.</p>
+          </article>
+          <article class="moment">
+            <h3>El primer mensaje</h3>
+            <p>Las palabras cruzaron el puente y se quedaron a vivir entre nosotros.</p>
+          </article>
+          <article class="moment">
+            <h3>Promesa</h3>
+            <p>Caminar despacio, reír fuerte y cuidarnos siempre.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="recuerdos">
+      <div class="container">
+        <h2>Pequeños recuerdos</h2>
+        <div class="gallery">
+          <figure class="tile" aria-label="Recuerdo 1">
+            <!-- Corazones SVG decorativos -->
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ff9ec2"/>
+                  <stop offset="1" stop-color="#ffd6e5"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M50 78 C 10 54, 10 28, 32 24 C 42 22, 50 30, 50 36 C 50 30, 58 22, 68 24 C 90 28, 90 54, 50 78 Z" fill="url(#g1)"/>
+              </g>
+            </svg>
+          </figure>
+          <figure class="tile" aria-label="Recuerdo 2">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ffd6e5"/>
+                  <stop offset="1" stop-color="#ffc2d6"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M50 78 C 10 54, 10 28, 32 24 C 42 22, 50 30, 50 36 C 50 30, 58 22, 68 24 C 90 28, 90 54, 50 78 Z" fill="url(#g2)"/>
+              </g>
+            </svg>
+          </figure>
+          <figure class="tile" aria-label="Recuerdo 3">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="g3" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ffd1e3"/>
+                  <stop offset="1" stop-color="#ffb2cc"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M50 78 C 10 54, 10 28, 32 24 C 42 22, 50 30, 50 36 C 50 30, 58 22, 68 24 C 90 28, 90 54, 50 78 Z" fill="url(#g3)"/>
+              </g>
+            </svg>
+          </figure>
+          <figure class="tile" aria-label="Recuerdo 4">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="g4" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ffe1ee"/>
+                  <stop offset="1" stop-color="#ffc4dc"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M50 78 C 10 54, 10 28, 32 24 C 42 22, 50 30, 50 36 C 50 30, 58 22, 68 24 C 90 28, 90 54, 50 78 Z" fill="url(#g4)"/>
+              </g>
+            </svg>
+          </figure>
+          <figure class="tile" aria-label="Recuerdo 5">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="g5" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ffd9ea"/>
+                  <stop offset="1" stop-color="#ffcfe1"/>
+                </linearGradient>
+              </defs>
+              <g>
+                <path d="M50 78 C 10 54, 10 28, 32 24 C 42 22, 50 30, 50 36 C 50 30, 58 22, 68 24 C 90 28, 90 54, 50 78 Z" fill="url(#g5)"/>
+              </g>
+            </svg>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="dedicatoria">
+      <div class="container">
+        <h2>Dedicado a</h2>
+        <div class="grid cols-3">
+          <div class="card">
+            <p><strong>Nombre:</strong> <span contenteditable="true" spellcheck="false">Mi persona favorita</span></p>
+            <p><strong>Fecha:</strong> <span contenteditable="true" spellcheck="false">24/08/2025</span></p>
+            <p class="small">Haz clic en el texto para editarlo antes de compartir.</p>
+          </div>
+          <div class="card">
+            <p>“El amor no se mira, se siente, y aún más cuando ella está junto a ti.”</p>
+            <p class="small">— Inspirado en Pablo Neruda</p>
+          </div>
+          <div class="card">
+            <blockquote>
+              Eres mi lugar tranquilo en un mundo que no deja de girar.
+              <footer>Con cariño, <span class="signature" contenteditable="true">Vega</span></footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="container">
+      <p>Hecho con ♥ en HTML + CSS. Puedes publicar este sitio en GitHub Pages, Netlify o Vercel.</p>
+      <p class="small">© <span id="y"></span> Para Ti</p>
+    </div>
+  </footer>
+
+  <script>
+    // Actualiza el año automáticamente (sin frameworks)
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
