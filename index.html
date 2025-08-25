@@ -131,6 +131,23 @@
       color: #ff4d6d;
       pointer-events: none;
     }
+    /* --- Animación de nombres flotantes con cambio de color --- */
+      .animacion span {
+      position: absolute;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      animation: girar 10s linear infinite, cambiarColor 6s ease-in-out infinite;
+    }
+
+      @keyframes cambiarColor {
+        0%   { color: #ff4d6d; }
+        25%  { color: #ffcc70; }
+        50%  { color: #70ffb8; }
+        75%  { color: #70aaff; }
+        100% { color: #ff4d6d; }
+      }
   </style>
 </head>
 <body>
@@ -309,4 +326,5 @@
   </script>
 </body>
 </html>
+
 
