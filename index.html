@@ -100,6 +100,37 @@
     footer.site{ text-align:center; padding:34px 0 60px; color:#5e2d3a }
     .signature{ font-family:"Great Vibes", cursive; font-size:34px; color:#b11e52 }
     .small{ font-size:13px; opacity:.8 }
+
+    /* --- NUEVO: animación de nombres (NO se borró nada, solo se añadió) --- */
+    .animacion {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 24px auto 0;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.6);
+    }
+    .animacion span {
+      position: absolute;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      animation: girar 10s linear infinite;
+    }
+    @keyframes girar {
+      0%   { transform: rotate(0deg) translateX(110px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(110px) rotate(-360deg); }
+    }
+    .corazon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 2.2rem;
+      color: #ff4d6d;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -120,6 +151,13 @@
         <a class="btn" href="#poema">Leer el poema</a>
         <a class="btn secondary" href="#historia">Nuestra historia</a>
       </div>
+
+      <!-- NUEVO: Animación de nombres (agregado sin borrar nada) -->
+      <div class="animacion" aria-label="Nombres animados">
+        <span>Jessy &amp; Junior</span>
+        <div class="corazon" aria-hidden="true">❤️</div>
+      </div>
+      <p class="small">Nuestra fecha: <strong>04/07/25</strong></p>
     </div>
   </header>
 
